@@ -1,0 +1,108 @@
+﻿<Page x:Class="taskrunner.View.DayWeek"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="DayWeek" Drop="Page_Drop">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="running" Header="running" Drop="Running_Drop">
+            <ListBox BorderThickness="0" ItemsSource="{Binding}" MouseDoubleClick="TaskList_MouseDoubleClick">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="listBoxItem_PreviewMouseLeftButtonDown"/>
+                        <EventSetter Event="PreviewMouseMove" Handler="listBoxItem_PreviewMouseMove"/>
+                        <EventSetter Event="QueryContinueDrag" Handler="listBoxItem_QueryContinueDrag"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <GroupBox x:Name="closed" Header="closed" Drop="Close_Drop" Visibility="Collapsed">
+            <ListBox BorderThickness="0" ItemsSource="{Binding}" MouseDoubleClick="TaskList_MouseDoubleClick">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="listBoxItem_PreviewMouseLeftButtonDown"/>
+                        <EventSetter Event="PreviewMouseMove" Handler="listBoxItem_PreviewMouseMove"/>
+                        <EventSetter Event="QueryContinueDrag" Handler="listBoxItem_QueryContinueDrag"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Height="5"/>
+        <TabControl Grid.Row="2" TabStripPlacement="Bottom" Drop="Open_Drop">
+            <TabItem x:Name="today" Header="Today" Drop="Today_Drop">
+                <ListBox Grid.Row="2" ItemsSource="{Binding}" MouseDoubleClick="TaskList_MouseDoubleClick">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="listBoxItem_PreviewMouseLeftButtonDown"/>
+                            <EventSetter Event="PreviewMouseMove" Handler="listBoxItem_PreviewMouseMove"/>
+                            <EventSetter Event="QueryContinueDrag" Handler="listBoxItem_QueryContinueDrag"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem x:Name="thisWeek" Header="This week" Drop="ThisWeek_Drop">
+                <ListBox Grid.Row="2" ItemsSource="{Binding}" MouseDoubleClick="TaskList_MouseDoubleClick">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="listBoxItem_PreviewMouseLeftButtonDown"/>
+                            <EventSetter Event="PreviewMouseMove" Handler="listBoxItem_PreviewMouseMove"/>
+                            <EventSetter Event="QueryContinueDrag" Handler="listBoxItem_QueryContinueDrag"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem x:Name="icebox" Header="Icebox">
+                <ListBox Grid.Row="2" ItemsSource="{Binding}" MouseDoubleClick="TaskList_MouseDoubleClick">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="listBoxItem_PreviewMouseLeftButtonDown"/>
+                            <EventSetter Event="PreviewMouseMove" Handler="listBoxItem_PreviewMouseMove"/>
+                            <EventSetter Event="QueryContinueDrag" Handler="listBoxItem_QueryContinueDrag"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Column="1" Grid.RowSpan="3">
+            <Button x:Name="CloseButton" Content="Close" Style="{DynamicResource EllipseButton}" VerticalAlignment="Top" HorizontalAlignment="Left" Drop="Close_Drop" Click="CloseButton_Click"/>
+            <Button x:Name="RunningButton" Content="Running" Style="{DynamicResource EllipseButton}" VerticalAlignment="Top" HorizontalAlignment="Left" Drop="Running_Drop" Visibility="Collapsed" Click="RunningButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
